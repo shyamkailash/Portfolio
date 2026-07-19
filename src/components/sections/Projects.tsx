@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink } from "lucide-react";
+import { FaGithub } from "react-icons/fa";
 
 const projects = [
   {
@@ -119,7 +120,7 @@ function Projects() {
                     className="project-link"
                     aria-label="GitHub"
                   >
-                    <Github size={18} />
+                    <FaGithub size={18} />
                   </a>
                   <a
                     href={project.live}

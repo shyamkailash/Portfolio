@@ -1,7 +1,8 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { MapPin, ShieldCheck, BookOpen, Zap } from "lucide-react";
 
 function IdentityCard() {
+  const shouldReduceMotion = useReducedMotion();
   const cardVariants = {
     hidden: { opacity: 0, x: 80, scale: 0.9, rotateY: -20 },
     visible: {
@@ -27,25 +28,29 @@ function IdentityCard() {
     <motion.div
       className="identity-card-wrapper"
       variants={cardVariants}
-      initial="hidden"
+      initial={shouldReduceMotion ? false : "hidden"}
       animate="visible"
     >
       <motion.div
         className="identity-card-glow"
-        animate={{
-          boxShadow: [
-            "0 0 40px rgba(34, 211, 238, 0.3)",
-            "0 0 80px rgba(34, 211, 238, 0.5)",
-            "0 0 40px rgba(34, 211, 238, 0.3)",
-          ],
-        }}
+        animate={
+          shouldReduceMotion
+            ? undefined
+            : {
+                boxShadow: [
+                  "0 0 40px rgba(34, 211, 238, 0.3)",
+                  "0 0 80px rgba(34, 211, 238, 0.5)",
+                  "0 0 40px rgba(34, 211, 238, 0.3)",
+                ],
+              }
+        }
         transition={{ duration: 4, repeat: Infinity }}
       />
 
       <motion.article
         className="identity-card"
         variants={floatVariants}
-        animate="animate"
+        animate={shouldReduceMotion ? undefined : "animate"}
         whileHover={{
           rotateX: -8,
           rotateY: 5,

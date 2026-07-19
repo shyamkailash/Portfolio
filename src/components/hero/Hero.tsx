@@ -1,9 +1,18 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Download, Mail } from "lucide-react";
 import { FaGithub, FaLinkedinIn } from "react-icons/fa";
 import IdentityCard from "./IdentityCard";
 
 function Hero() {
+  const shouldReduceMotion = useReducedMotion();
+  const particles = [
+    { left: "8%", top: "18%", size: 3, delay: 0 },
+    { left: "18%", top: "72%", size: 2, delay: 1.1 },
+    { left: "38%", top: "12%", size: 2, delay: 2.2 },
+    { left: "58%", top: "82%", size: 3, delay: 0.7 },
+    { left: "73%", top: "24%", size: 2, delay: 1.8 },
+    { left: "88%", top: "66%", size: 3, delay: 2.8 },
+  ];
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -26,14 +35,38 @@ function Hero() {
 
   return (
     <section className="hero" id="home">
-      <div className="hero__background" />
-      <div className="hero__grid" />
+      <div className="hero__background" aria-hidden="true" />
+      <div className="hero__grid" aria-hidden="true" />
+      <div className="hero__particles" aria-hidden="true">
+        {particles.map((particle, index) => (
+          <motion.span
+            key={index}
+            style={{
+              left: particle.left,
+              top: particle.top,
+              width: particle.size,
+              height: particle.size,
+            }}
+            animate={
+              shouldReduceMotion
+                ? undefined
+                : { y: [0, -12, 0], opacity: [0.25, 0.75, 0.25] }
+            }
+            transition={{
+              duration: 4.5,
+              delay: particle.delay,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
+        ))}
+      </div>
 
       <div className="hero__container">
         <motion.div
           className="hero__content"
           variants={containerVariants}
-          initial="hidden"
+          initial={shouldReduceMotion ? false : "hidden"}
           animate="visible"
         >
           <motion.div className="hero__status" variants={itemVariants}>
