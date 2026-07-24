@@ -1,62 +1,43 @@
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowUpRight, Check, Code2 } from "lucide-react";
-import { FaGithub } from "react-icons/fa";
+import { Folder } from "lucide-react";
 import type { Project } from "../../data/projects";
 
-type ProjectCardProps = {
+interface ProjectCardProps {
   project: Project;
-  index: number;
-};
+  onClick: () => void;
+}
 
-function ProjectCard({ project, index }: ProjectCardProps) {
+function ProjectCard({ project, onClick }: ProjectCardProps) {
   const shouldReduceMotion = useReducedMotion();
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      onClick();
+    }
+  };
+
   return (
-    <motion.article
-      className="project-panel"
-      initial={shouldReduceMotion ? false : { opacity: 0, y: 28 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.12 }}
-      transition={{ duration: 0.5, delay: (index % 2) * 0.06 }}
-      whileHover={shouldReduceMotion ? undefined : { y: -6 }}
+    <motion.div
+      className="project-folder"
+      onClick={onClick}
+      onKeyDown={handleKeyDown}
+      tabIndex={0}
+      role="button"
+      aria-haspopup="dialog"
+      aria-label={`Open details for project ${project.title}`}
+      whileHover={shouldReduceMotion ? undefined : { y: -5 }}
+      whileTap={{ scale: 0.97 }}
     >
-      <div className="project-panel__visual" aria-hidden="true">
-        <div className="project-panel__grid" />
-        <span>{project.mark}</span>
-        <Code2 size={26} />
+      <div className="project-folder__icon-container">
+        <div className="project-folder__glow" aria-hidden="true" />
+        <Folder className="project-folder__icon" size={62} />
       </div>
-
-      <div className="project-panel__body">
-        <h3>{project.title}</h3>
-        <p>{project.description}</p>
-
-        <div className="project-panel__tech" aria-label="Technologies">
-          {project.technologies.map((technology) => (
-            <span key={technology}>{technology}</span>
-          ))}
-        </div>
-
-        <ul className="project-panel__features">
-          {project.features.map((feature) => (
-            <li key={feature}>
-              <Check size={14} aria-hidden="true" /> {feature}
-            </li>
-          ))}
-        </ul>
-
-        <div className="project-panel__actions">
-          <a href={project.links.github} aria-label={`${project.title} GitHub repository`}>
-            <FaGithub size={17} aria-hidden="true" /> GitHub
-          </a>
-          <a href={project.links.live} aria-label={`${project.title} live demo`}>
-            <ArrowUpRight size={17} aria-hidden="true" /> Live Demo
-          </a>
-          <a href={project.links.details} aria-label={`View ${project.title} details`}>
-            Details
-          </a>
-        </div>
+      <div className="project-folder__meta">
+        <h3 className="project-folder__name">{project.title}</h3>
+        <span className="project-folder__label">{project.category}</span>
       </div>
-    </motion.article>
+    </motion.div>
   );
 }
 

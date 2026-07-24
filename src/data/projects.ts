@@ -1,89 +1,93 @@
-export type Project = {
+export interface Project {
+  id: string;
   title: string;
+  category: "Agentic AI" | "AI / ML" | "Full Stack" | "Computer Vision" | "Python";
   description: string;
   technologies: string[];
-  features: string[];
-  mark: string;
-  links: {
-    github: string;
-    live: string;
-    details: string;
-  };
-};
+  githubUrl: string;
+  liveUrl: string;
+  featured: boolean;
+}
 
-// Placeholder links: replace each "#" with the final project URL when available.
 export const projects: Project[] = [
   {
-    title: "LMSGuard",
-    description:
-      "AI-powered online examination monitoring and proctoring platform integrated with LMS and Safe Exam Browser.",
-    technologies: ["FastAPI", "Next.js", "WebSockets", "OpenCV", "SQLite", "Python"],
-    features: [
-      "Live screen monitoring",
-      "Risk scoring",
-      "Unauthorized-app detection",
-      "Real-time alerts",
-      "Invigilator dashboard",
-      "Downloadable reports",
-    ],
-    mark: "LG",
-    links: { github: "#", live: "#", details: "#" },
+    id: "livelook",
+    title: "LiveLook",
+    category: "Agentic AI",
+    description: "AI-powered student monitoring and examination supervision platform with real-time screen streaming, policy enforcement, alerts, and evidence capture.",
+    technologies: ["FastAPI", "Next.js", "WebSockets", "Python", "OpenCV"],
+    githubUrl: "", // TODO: Add repository URL
+    liveUrl: "",
+    featured: true
   },
   {
+    id: "genrec-ai",
     title: "GenRec-AI",
-    description:
-      "Agentic AI lab record assistant that generates structured college lab records using RAG, LLMs, and document processing.",
-    technologies: ["Django", "Python", "ChromaDB", "RAG", "LLM", "OCR"],
-    features: [
-      "Observation upload",
-      "Format detection",
-      "Retrieval",
-      "Content generation",
-      "Validation",
-      "PDF export",
-    ],
-    mark: "GR",
-    links: { github: "#", live: "#", details: "#" },
+    category: "Agentic AI",
+    description: "Agentic AI lab-record assistant using RAG, LLMs, document processing, validation, and PDF generation.",
+    technologies: ["Django", "Python", "ChromaDB", "RAG", "OCR"],
+    githubUrl: "", // TODO: Add repository URL
+    liveUrl: "",
+    featured: true
   },
   {
+    id: "taskora-ai",
+    title: "Taskora AI",
+    category: "Agentic AI",
+    description: "Autonomous AI task agent that extracts, prioritizes, plans, and tracks tasks from digital workspaces.",
+    technologies: ["FastAPI", "React", "LLM", "Agentic AI"],
+    githubUrl: "", // TODO: Add repository URL
+    liveUrl: "",
+    featured: true
+  },
+  {
+    id: "medical-chatbot",
     title: "Medical Assistant Chatbot",
-    description:
-      "Open-source LLM-based medical assistant for general healthcare support and conversational guidance.",
-    technologies: ["Python", "FastAPI", "Transformers", "TinyLlama", "LangGraph"],
-    features: [
-      "Chatbot interface",
-      "Medical query handling",
-      "Context-aware responses",
-      "Open-source LLM integration",
-    ],
-    mark: "MA",
-    links: { github: "#", live: "#", details: "#" },
+    category: "AI / ML",
+    description: "Open-source LLM-based healthcare assistant with context-aware conversational guidance.",
+    technologies: ["Python", "FastAPI", "TinyLlama", "LangGraph"],
+    githubUrl: "https://github.com/shyamkailash/Medical_Care_Centre",
+    liveUrl: "",
+    featured: true
   },
   {
+    id: "multi-agent-co",
     title: "AI Multi-Agent Software Company",
-    description:
-      "Multi-agent system simulating a software company with CEO, architect, developer, debugger, QA, UI/UX, and DevOps agents.",
-    technologies: ["Python", "Ollama", "Qwen", "Agentic AI"],
-    features: ["Specialized agent roles", "Collaborative workflows", "Local model orchestration"],
-    mark: "MA",
-    links: { github: "#", live: "#", details: "#" },
+    category: "Agentic AI",
+    description: "Multi-agent software engineering system with CEO, architect, developer, debugger, QA, UI/UX, and DevOps agents.",
+    technologies: ["Python", "Ollama", "Qwen", "Multi-Agent AI"],
+    githubUrl: "", // TODO: Add repository URL
+    liveUrl: "",
+    featured: true
   },
   {
-    title: "Invigilation Duty Anomaly Detection",
-    description:
-      "Computer vision system for identifying unusual activities and monitoring exam environments.",
-    technologies: ["Python", "OpenCV", "Computer Vision", "Machine Learning"],
-    features: ["Activity monitoring", "Visual anomaly detection", "Exam-environment analysis"],
-    mark: "AD",
-    links: { github: "#", live: "#", details: "#" },
+    id: "invigilation-anomaly",
+    title: "Invigilation Anomaly Detection",
+    category: "Computer Vision",
+    description: "Computer vision system for identifying suspicious or unusual activities in examination environments.",
+    technologies: ["Python", "OpenCV", "Machine Learning"],
+    githubUrl: "", // TODO: Add repository URL
+    liveUrl: "",
+    featured: true
   },
   {
+    id: "lab-report-gen",
     title: "AI Lab Report Generator",
-    description:
-      "Generates formatted lab records from experiment inputs and images.",
+    category: "Python",
+    description: "Generates formatted academic lab reports from experiment details and uploaded observations.",
     technologies: ["Python", "OCR", "LLM", "PDF Generation"],
-    features: ["Experiment input processing", "Image text extraction", "Formatted PDF output"],
-    mark: "LR",
-    links: { github: "#", live: "#", details: "#" },
+    githubUrl: "", // TODO: Add repository URL
+    liveUrl: "",
+    featured: false
   },
+  {
+    id: "portfolio",
+    title: "Portfolio",
+    category: "Full Stack",
+    description: "Premium personal developer portfolio built with React, TypeScript, Vite, and Framer Motion.",
+    technologies: ["React", "TypeScript", "Vite", "Framer Motion"],
+    githubUrl: "", // TODO: Add repository URL
+    liveUrl: "https://shyamkailash.dev",
+    featured: false
+  }
 ];

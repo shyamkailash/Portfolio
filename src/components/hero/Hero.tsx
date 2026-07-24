@@ -1,7 +1,6 @@
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, Download, Mail } from "lucide-react";
-import { FaGithub, FaLinkedinIn } from "react-icons/fa";
-import IdentityCard from "./IdentityCard";
+import { ArrowRight, Download, Mail, Brain, Terminal, Zap } from "lucide-react";
+import { FaGithub, FaLinkedinIn, FaGlobe } from "react-icons/fa";
 
 function Hero() {
   const shouldReduceMotion = useReducedMotion();
@@ -108,7 +107,7 @@ function Hero() {
 
           <motion.div className="hero__socials" variants={itemVariants}>
             <a
-              href="https://github.com/YOUR_GITHUB_USERNAME"
+              href="https://github.com/shyamkailash"
               target="_blank"
               rel="noreferrer"
               aria-label="GitHub"
@@ -118,7 +117,7 @@ function Hero() {
             </a>
 
             <a
-              href="https://www.linkedin.com/in/YOUR_LINKEDIN_USERNAME"
+              href="https://www.linkedin.com/in/shyam-kailash-861240331"
               target="_blank"
               rel="noreferrer"
               aria-label="LinkedIn"
@@ -128,7 +127,7 @@ function Hero() {
             </a>
 
             <a
-              href="mailto:your-email@example.com"
+              href="mailto:shyamkailash268@gmail.com"
               aria-label="Email"
               title="Email"
             >
@@ -137,7 +136,102 @@ function Hero() {
           </motion.div>
         </motion.div>
 
-        <IdentityCard />
+        {/* Premium AI Engineer Hanging ID Card */}
+        <div className="identity-card-wrapper">
+          <div className="identity-card-glow" />
+
+          {/* Hanging strap and clip (gentle sway animation) */}
+          <motion.div
+            className="identity-card-strap-container"
+            animate={shouldReduceMotion ? undefined : { rotate: [-1.2, 1.2, -1.2] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <div className="identity-card__strap" />
+            <div className="identity-card__clip" />
+          </motion.div>
+
+          {/* ID Card (slow float animation) */}
+          <motion.div
+            className="identity-card"
+            animate={shouldReduceMotion ? undefined : { y: [0, -8, 0] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <div className="identity-card__header">
+              <span>Enterprise ID</span>
+              <strong>ID: 2026-SK</strong>
+            </div>
+
+            <div className="identity-card__photo-container">
+              <img
+                src="/images/profile.jpeg"
+                alt="Shyam Kailash"
+                className="identity-card__photo"
+              />
+            </div>
+
+            <div className="identity-card__identity">
+              <h2>Shyam Kailash</h2>
+              <p>AI & Machine Learning Engineer</p>
+            </div>
+
+            <div className="identity-card__details">
+              <div className="identity-card__detail">
+                <Brain className="identity-card__detail-icon" size={18} />
+                <div>
+                  <span>AI & Machine Learning</span>
+                  <p>Building intelligent systems</p>
+                </div>
+              </div>
+              <div className="identity-card__divider" />
+
+              <div className="identity-card__detail">
+                <Terminal className="identity-card__detail-icon" size={18} />
+                <div>
+                  <span>Full-Stack Development</span>
+                  <p>React • Next.js • FastAPI</p>
+                </div>
+              </div>
+              <div className="identity-card__divider" />
+
+              <div className="identity-card__detail">
+                <Zap className="identity-card__detail-icon" size={18} />
+                <div>
+                  <span>Agentic AI</span>
+                  <p>LLMs • RAG • Multi-Agent Systems</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="identity-card__footer">
+              <div className="identity-card__socials">
+                <a
+                  href="https://github.com/shyamkailash"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="GitHub Profile"
+                >
+                  <FaGithub size={16} />
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/shyam-kailash-861240331"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn Profile"
+                >
+                  <FaLinkedinIn size={16} />
+                </a>
+                <a
+                  href="https://shyamkailash.dev"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Portfolio Website"
+                >
+                  <FaGlobe size={16} />
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
